@@ -30,6 +30,8 @@ public class PowerSet extends ConsoleProgram {
             /*
             myinteger is increased by one every iteration,
             until the N'th(+1) digit of myinteger becomes 1.
+            Alternatively, we could increase myinteger until Math.pow(2, maxInt).
+
             On every iteration, it is checked which places of myintegers
             byte-string are 1 and which ones are 0 and added to the set accordingly.
 
