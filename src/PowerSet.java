@@ -19,6 +19,8 @@ public class PowerSet extends ConsoleProgram {
             println(" } is");
 
             // The powerset is a set of sets of type integer.
+            // Use LinkedHashSet to retain order (which is not the case
+            // with HashSet)
             Set<Set<Integer>> powerSet = new LinkedHashSet<Set<Integer>>();
 
             // increase maxInt by one, as the first place is the zero
