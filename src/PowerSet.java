@@ -28,9 +28,14 @@ public class PowerSet extends ConsoleProgram {
             /*
             myinteger is increased by one every iteration,
             until the N'th(+1) digit of myinteger becomes 1.
-            On every iteration, it is checked which places of the
-            integers byte-string is 1 or not and added to the set accordingly.
-             */
+            On every iteration, it is checked which places of myintegers
+            byte-string are 1 and which ones are 0 and added to the set accordingly.
+
+            For example:
+            myinteger is 5.
+            It's bytestring is 101.
+            Therefore, 3 and 1 are added to the set, as these places are set to 1.
+            */
             int myinteger = 0;
             while ((myinteger & (1 << maxInt)) == 0) {
                 Set<Integer> set = new LinkedHashSet<Integer>();
