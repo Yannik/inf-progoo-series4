@@ -5,6 +5,30 @@ import java.awt.*;
 
 public class MethodicalChessboard extends GraphicsProgram {
 
+    /*
+    Method: a method acts on some input data (exception: the method does not have any parameters) and optionally returns a value.
+            examples for methods in this class: run(), drawChessboard(), drawLabels(), etc..
+
+    Parameter: parameters define the input data a method requires
+               examples: x, y, piece, player for the method drawPiece
+
+    Type: there are primitive types (int, double) and class types (Color, String, Integer [this is actually an object wrapper
+          for a primitive type]). all variables are of a certain type, as are all functions. in this case, the type is the type
+          of the return value, except for functions which are of type void and therefore got no return value.
+
+    Argument: arguments are the actual values that are used for the parameters when calling a function.
+              example: label.setFilled(true) <- true is the argument for the parameter fill of the setFilled function.
+
+    Scope: scope is where you can refer to a variable. i.e. class variables can be used everywhere in a class
+          (chessfieldWidth, colNameWidth), while variables defined inside of a function (unicodeChar, labelPiece in drawPiece)
+           can only be used inside of this function and variables defined in a block can only be used in this block scope.
+           (preLabel, postLabel in the for loop's block in drawLabels).
+
+    Control statement: control statements control whether certain parts of code are executed
+                       (if clause which evaluates to true), not executed at all (if clause evaluating to false),
+                       or even executed repeatedly (for/while loops).
+     */
+
     public static int chessfieldWidth = 100;
     public static int colNameWidth = 50;
     public static String[] columns = {"A", "B", "C", "D", "E", "F", "G", "H"};
