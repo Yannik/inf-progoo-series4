@@ -11,11 +11,23 @@ public class MethodicalChessboard extends GraphicsProgram {
     public static String[] rows = {"8", "7", "6", "5", "4", "3", "2", "1" };
     public static String[] pieces_player0 = {"\u2659", "\u2658", "\u2657", "\u2656", "\u2655", "\u2654"};
     public static String[] pieces_player1 = {"\u265F", "\u265E", "\u265D", "\u265C", "\u265B", "\u265A"};
+    public static int[] default_chessboard = { 3, 1, 2, 4, 5, 2, 1, 3 };
 
     public void run() {
         setSize(chessfieldWidth * columns.length + colNameWidth * 2, chessfieldWidth * rows.length + colNameWidth * 2);
         drawLabels();
         drawChessboard();
+
+        // draw pieces
+        for (int columnNumber = 0; columnNumber < columns.length; columnNumber++) {
+            // pawns
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth, 0, 1);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth * (rows.length - 2), 0, 0);
+
+            // other pieces
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth, default_chessboard[columnNumber], 1);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth * (rows.length - 1), default_chessboard[columnNumber], 0);
+        }
     }
 
     public void drawChessboard() {
@@ -91,7 +103,20 @@ public class MethodicalChessboard extends GraphicsProgram {
         }
         GLabel labelPiece = new GLabel(unicodeChar);
         labelPiece.setFont(Font.decode("SansSerif-44"));
-        add(labelPiece, x, y);
+        //add(labelPiece, x + elementHorizontalCenter(labelPiece, chessfieldWidth), y + elementVerticalCenter(labelPiece, chessfieldWidth));
+
+        println(labelPiece.getBounds().getY());
+        println(labelPiece.getBounds().getHeight());
+        println("c:" + (y - labelPiece.getBounds().getY()));
+        //add(labelPiece, x, y - labelPiece.getBounds().getY());
+        add(labelPiece, x + elementHorizontalCenter(labelPiece, chessfieldWidth), y + elementVerticalCenter(labelPiece, chessfieldWidth) - labelPiece.getBounds().getY());
+        //labelPiece.setLocation(x, y);
+        println(labelPiece.getY());
+        GRectangle bounds = labelPiece.getBounds();
+        println(bounds.getX());
+        println(bounds.getY());
+        println(bounds.getWidth());
+        println(bounds.getHeight());
     }
 
 
