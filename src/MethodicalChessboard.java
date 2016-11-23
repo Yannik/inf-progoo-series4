@@ -21,12 +21,24 @@ public class MethodicalChessboard extends GraphicsProgram {
         // draw pieces
         for (int columnNumber = 0; columnNumber < columns.length; columnNumber++) {
             // pawns
-            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth, 0, 1);
-            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth * (rows.length - 2), 0, 0);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber,
+                    colNameWidth + chessfieldWidth,
+                    0,
+                    1);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber,
+                    colNameWidth + chessfieldWidth * (rows.length - 2),
+                    0,
+                    0);
 
             // other pieces
-            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth, default_chessboard[columnNumber], 1);
-            drawPiece(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth * (rows.length - 1), default_chessboard[columnNumber], 0);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber,
+                    colNameWidth,
+                    default_chessboard[columnNumber],
+                    1);
+            drawPiece(colNameWidth + chessfieldWidth * columnNumber,
+                    colNameWidth + chessfieldWidth * (rows.length - 1),
+                    default_chessboard[columnNumber],
+                    0);
         }
     }
 
@@ -39,7 +51,9 @@ public class MethodicalChessboard extends GraphicsProgram {
                     color = Color.LIGHT_GRAY;
                 }
 
-                drawSquare(colNameWidth + chessfieldWidth * columnNumber, colNameWidth + chessfieldWidth * rowNumber, color);
+                drawSquare(colNameWidth + chessfieldWidth * columnNumber,
+                        colNameWidth + chessfieldWidth * rowNumber,
+                        color);
             }
 
         }
@@ -101,22 +115,16 @@ public class MethodicalChessboard extends GraphicsProgram {
         if (player == 1) {
             unicodeChar = pieces_player1[piece];
         }
+
         GLabel labelPiece = new GLabel(unicodeChar);
         labelPiece.setFont(Font.decode("SansSerif-44"));
-        //add(labelPiece, x + elementHorizontalCenter(labelPiece, chessfieldWidth), y + elementVerticalCenter(labelPiece, chessfieldWidth));
 
-        println(labelPiece.getBounds().getY());
-        println(labelPiece.getBounds().getHeight());
-        println("c:" + (y - labelPiece.getBounds().getY()));
-        //add(labelPiece, x, y - labelPiece.getBounds().getY());
-        add(labelPiece, x + elementHorizontalCenter(labelPiece, chessfieldWidth), y + elementVerticalCenter(labelPiece, chessfieldWidth) - labelPiece.getBounds().getY());
-        //labelPiece.setLocation(x, y);
-        println(labelPiece.getY());
-        GRectangle bounds = labelPiece.getBounds();
-        println(bounds.getX());
-        println(bounds.getY());
-        println(bounds.getWidth());
-        println(bounds.getHeight());
+        // we need to subtract "labelPiece.getBounds().getY() from the y value
+        // to fix a really weird bug: apparantly, the labelPiece has a y value
+        // that is negative (-41 for pawns) by default?!
+        add(labelPiece,
+                x + elementHorizontalCenter(labelPiece, chessfieldWidth),
+                y + elementVerticalCenter(labelPiece, chessfieldWidth) - labelPiece.getBounds().getY());
     }
 
 
